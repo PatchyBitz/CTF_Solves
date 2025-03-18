@@ -1,4 +1,6 @@
 
+
+
 #### Hints given
 1. Frida is an easy-to-install, lightweight binary instrumentation toolkit
 2. Try using the CLI tools like frida-trace to auto-generate handlers
@@ -22,7 +24,7 @@ frida-trace -f bininst1.exe -i Sleep -i SleepEx
 
 After frida-trace generates the handlers, going to the UI at the provided link will present:
 
-![[Step1.png]]
+![Frida Trace Web Interface](https://github.com/PatchyBitz/CTF_Solves/blob/main/PicoCTF-2025/Binary%20Instrumentation%201/Step1.png "Step 1")
 
 
 A handy function of frida-trace is that each handler can easily be set to return the arguments that the function was called with. Navigating to the [SleepEx Function Documentation](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleepex) we can see that SleepEx has the following arguments:
@@ -51,7 +53,7 @@ After that we hit deploy on the top left and respawn on the bottom left.
 > This might take a moment, that or my poor abused VM was struggling
 
 After a while we should see the following: 
-![[Step2.png]]
+![After Deploy and Respawn](https://github.com/PatchyBitz/CTF_Solves/blob/main/PicoCTF-2025/Binary%20Instrumentation%201/Step2.png "Step 2")
 
 We can see that the time on this sleep is set to about ~1200 hours.
 > This may not be accurate due to how we read the output.
@@ -73,9 +75,9 @@ defineHandler({
 ```
 
 After hitting deploy and respawn, we can go back to our cmd line window (where we ran the frida-trace command) and see something like this:
-![[Step3.png]]
+![Cmdline output after rewriting time](https://github.com/PatchyBitz/CTF_Solves/blob/main/PicoCTF-2025/Binary%20Instrumentation%201/Step3.png "Step 3")
 Scrolling down a bit:
-![[Step4.png]]
+![Flag Revealed](https://github.com/PatchyBitz/CTF_Solves/blob/main/PicoCTF-2025/Binary%20Instrumentation%201/Step4.png "Step 4")
 We get a prompt:
 ```
 Ok, I'm Up! The flag is: cGljb0NURnt3NGtlX20zX3VwX3cxdGhfZnIxZGFfZjI3YWNjMzh9
